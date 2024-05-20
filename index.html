@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanted Forest Slot Game</title>
+    <link rel="stylesheet" href="slot.css">
+    <script src="slot.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="videoOverlay">
+        <video id="forestVideo" autoplay muted>
+            <!-- Add a poster attribute to show an image before the video loads -->
+            <source src="forest.mp4" type="video/mp4">
+            <!-- Add alternative text in case the video cannot be loaded -->
+            Your browser does not support the video tag.
+        </video>
+        <!-- Add a span element for the "Loading..." text -->
+        <span id="loadingText">Preaper YourSelf To Enter Enchanted Forest...</span>
+    </div>
+<h1 class="slotTitle">Enchanted Forest</h1>
+<div class="mainSection">
+    <table>
+        <tr>
+            <td class="slot"></td>
+            <td class="slot"></td>
+            <td class="slot"></td>
+        </tr>
+        <tr>
+            <td class="slot"></td>
+            <td class="slot"></td>
+            <td class="slot"></td>
+        </tr>
+        <tr>
+            <td class="slot"></td>
+            <td class="slot"></td>
+            <td class="slot"></td>
+        </tr>
+        
+    </table>
+    <div class="buttonSection">
+        <button id="autoSpinButton"><i class="fa-solid fa-a"></i></button>
+        <button id="spinButton">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
+        <button id="setCostButton">
+            <i class="fa-solid fa-dollar-sign"></i>
+        </button>
+
+        <button id="toggleSoundButton">
+            <i class="fa-solid fa-volume-high"></i>
+        </button>
+    </div>
+</div>
+<div class="balanceSection">
+<div id="balanceDisplay">Balance: $0</div>
+<p id="spinCostDisplay">Cost per Spin: $10</p>
+</div>
+
+<!-- Modal for setting spin cost -->
+<div id="costModal" style="display: none;">
+    <p>Please select the cost per spin:</p>
+    <button data-cost="10">-$10</button>
+    <button data-cost="20">-$20</button>
+    <button data-cost="50">-$50</button>
+</div>
+<div id="spinModal" style="display: none;">
+    <p>Please select the number of spins:</p>
+    <button data-spins="5">5</button>
+    <button data-spins="10">10</button>
+    <button data-spins="30">30</button>
+    <button data-spins="50">50</button>
+</div>
+<audio id="spinSound" src="spin.wav" preload="auto"></audio>
+<audio id="winSound" src="win.mp3" preload="auto"></audio>
+
+
+<audio id="backgroundSound" src="sound.mp3" loop preload="auto"></audio>
+</body>
+</html>

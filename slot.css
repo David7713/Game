@@ -1,0 +1,403 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+
+/* Body styles */
+body {
+    font-family: "Aclonica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#videoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#videoOverlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#mainContent {
+    display: none; /* Initially hide the main content */
+}
+#loadingText {
+    color: white; /* Set text color */
+    font-size: 25px; /* Adjust font size */
+    position: absolute; /* Position the text absolutely within the video overlay */
+    top: 50%; /* Position the text vertically at the center */
+    left: 50%; /* Position the text horizontally at the center */
+    transform: translate(-50%, -50%); /* Center the text */
+    z-index: 1000; /* Ensure the text is above other elements */
+    display: block; /* Initially display the text */
+    padding: 10px 20px; /* Add padding to the text */
+    background-color: rgba(67, 4, 122, 0.5); /* Add a semi-transparent background */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
+
+/* Main container styles */
+.mainSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-top: 20px; /* Adjust as needed */
+    margin-bottom: 50px; /* Add some space below the main section */
+}
+
+/* Title styles */
+.slotTitle {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed */
+    color:white;
+    font-size: 50px;
+    letter-spacing: 20px;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    max-width: 600px; /* Set a maximum width */
+    height: auto;
+    margin-top: 50px; /* Adjust as needed */
+    margin-bottom: 20px; /* Add some space below the table */
+    text-align: center;
+    border-collapse: collapse;
+    
+
+    
+}
+
+td {
+    width: 140px; /* Adjust width to fit the images */
+    height: 130px; /* Adjust height to fit the images */
+    border: 1px solid black;
+    padding: 0; /* Remove padding */
+    background-size: cover; /* Ensure the background image covers the entire cell */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+}
+
+
+
+/* Balance and spin cost section styles */
+.balanceSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Aclonica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    gap: 30px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 25px;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* White background with transparency */
+    backdrop-filter: blur(10px); /* Blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    text-align: center;
+    background: url('leaf.jpg');
+    position: relative;
+    overflow: hidden; /* Hide overflow to ensure cutout effects don't extend outside */
+  
+}
+
+/* Adding leaf/vine decorations for the enchanted forest feel */
+.balanceSection::before, .balanceSection::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.5; /* Slightly transparent for a subtle effect */
+    
+}
+
+.balanceSection::before {
+    top: -20px;
+    left: -20px;
+    transform: rotate(-15deg);
+}
+
+.balanceSection::after {
+    bottom: -20px;
+    right: -20px;
+    transform: rotate(15deg);
+}
+
+/* Additional styles for the balance display */
+#balanceDisplay, #spinCostDisplay {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+ 
+}
+
+/* Adding a subtle glow effect */
+.balanceSection::before, .balanceSection::after {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Green glow to match the forest theme */
+}
+
+/* Creating a cutout effect with CSS */
+.balanceSection {
+    clip-path: polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%);
+}
+
+/* Modal styles */
+/* Modal styles */
+#costModal, #spinModal {
+    max-width: 300px; /* Set a maximum width for the modal */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
+    border: 2px solid #000; /* Black border */
+    display: none; /* Hidden by default */
+    z-index: 1000;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); /* Box shadow for depth */
+}
+
+#costModal p, #spinModal p {
+    margin-bottom: 10px;
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold; /* Bold font */
+}
+
+#costModal button, #spinModal button {
+    margin: 5px;
+    padding: 8px 16px; /* Padding for buttons */
+    border: none;
+    background-color: #00693E; /* Blue background */
+    color: white; /* White text color */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#costModal button:hover, #spinModal button:hover {
+    background-color:#00693E; /* Darker blue on hover */
+}
+
+/* Close button styles for the modals */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #000; /* Black color */
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #555; /* Dark gray color on hover */
+}
+/* Animation styles */
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+td.match {
+    animation: scaleUp 0.5s ease-in-out;
+}
+
+
+/* Button section styles */
+.buttonSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+    margin-top: 50px; /* Adjust as needed */
+    margin-bottom: 20px; /* Add some space below the buttons */
+    
+
+
+}
+button{
+    cursor: pointer;
+}
+
+
+
+
+
+
+#spinButton{
+    width: 100px;
+    height:100px;
+   border-radius: 50%;
+   color:white;
+   background-color:transparent;
+   border: 1px solid white;
+   font-size: 50px;
+}
+#autoSpinButton{
+    width: 80px;
+    height:80px;
+   border-radius: 50%;
+   color:white;
+   background-color:transparent;
+   border: 1px solid white;
+   font-size: 50px;
+}
+
+
+#setCostButton{
+    width: 80px;
+    height:80px;
+    color:white;
+   border-radius: 50%;
+   background-color:transparent;
+   border: 1px solid white;
+   font-size: 50px;
+}
+#toggleSoundButton{
+    width: 60px;
+    height:60px;
+    color:white;
+   border-radius: 50%;
+    background-color:transparent;
+    border: 1px solid white;
+    font-size: 25px;
+    
+}
+
+
+
+
+
+#setCostButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-color: white; /* Change border color on hover */
+}
+#autoSpinButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-color: white; /* Change border color on hover */
+}
+#spinButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-color: white; /* Change border color on hover */
+}
+
+
+
+
+/* Sound toggle button hover effect */
+#toggleSoundButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-color: white; /* Change border color on hover */
+}
+
+/* Spin cost button hover effect */
+#setCostButton:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-color: white; /* Change border color on hover */
+}
+
+
+
+
+
+
+
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    /* Body styles for smaller screens */
+    body {
+        font-size: 14px; /* Adjust the base font size for better readability */
+    }
+
+    /* Main container styles for smaller screens */
+    .mainSection {
+        flex-direction: column; /* Adjust flex direction to column for smaller screens */
+        align-items: center; /* Center items horizontally */
+        margin: 20px; /* Add margin for spacing */
+    }
+
+    /* Title styles for smaller screens */
+    .slotTitle {
+        font-size: 30px; /* Decrease font size for better fit */
+        letter-spacing: 10px; /* Adjust letter spacing */
+        margin-top: 20px; /* Adjust top margin */
+    }
+
+    /* Table styles for smaller screens */
+    table {
+        width: 90%; /* Adjust width to fit smaller screens */
+        margin-top: 20px; /* Adjust top margin */
+        margin-bottom: 10px; /* Adjust bottom margin */
+    }
+
+    /* Balance and spin cost section styles for smaller screens */
+    .balanceSection {
+        font-size: 18px; /* Decrease font size for better fit */
+        gap: 10px; /* Adjust gap between elements */
+ 
+    }
+
+    /* Button section styles for smaller screens */
+    .buttonSection {
+        flex-direction: row; /* Change back to row for smaller screens */
+        gap: 10px; /* Adjust gap between buttons */
+        margin-top: 20px; /* Adjust top margin */
+        margin-bottom: 20px; /* Adjust bottom margin */
+    }
+
+    /* Button styles for smaller screens */
+    button {
+        font-size: 20px; /* Decrease font size for better fit */
+        width: 80px; /* Adjust button width */
+        height: 80px; /* Adjust button height */
+    }
+
+    /* Modal styles for smaller screens */
+    #costModal, #spinModal {
+        width: 90%; /* Adjust modal width for smaller screens */
+        max-width: 300px; /* Limit maximum width */
+        padding: 10px; /* Adjust padding */
+    }
+
+    /* Close button styles for the modals */
+    .close {
+        font-size: 16px; /* Adjust font size */
+    }
+}
